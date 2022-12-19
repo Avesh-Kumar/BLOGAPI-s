@@ -1,6 +1,6 @@
 
 const mongoose= require('mongoose');
-const config = require('../config/index');
+const config = require('./credential');
 mongoose.set('strictQuery',false);
 mongoose.connect(config.mongouri, {
   useNewUrlParser: "true",

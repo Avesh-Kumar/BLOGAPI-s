@@ -7,7 +7,6 @@ const blogSchema=  new Schema({
         require:true,
         unique:true
     }
-
 })
 const Blog = mongoose.model('Blog',blogSchema);
 module.exports={Blog};

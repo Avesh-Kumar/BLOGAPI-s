@@ -1,18 +1,18 @@
-const config=require('./config/index')
- require('./models/db')
+const config=require('./config/credential')
+ require('./config/connectMongo')
 const express = require('express');
-const blogRouter=require('./routers/blogAPIRouter');
+const userRouter=require('./routers/APIRouter');
 const app =express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use('/',blogRouter);
-app.set('view engine','ejs')
+
+app.set('view engine','ejs') 
+
+app.use('/',userRouter);
 
 
 
 
-
-
-app.listen(config.port,()=>{
-    console.log(`server is listining port no ${config.port}`);
-})
+app.listen(config.port || (3000),()=>{
+    console.log(`server is listining port no ${config.port || 3000}......`);
+});
