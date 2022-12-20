@@ -1,4 +1,4 @@
-const userService= require('../services/userServices')
+const userService= require('../services/userServices');
 exports.signup=async(req,res)=>{
   await userService.register(req.body).then((result)=>{
     res.status(200).send({"status":"success","user":result});
@@ -16,8 +16,7 @@ exports.userLogin=async (req,res)=>{
 };
 exports.allUsers=async(req,res)=>{
   await userService.getAllUsers().then(result=>{
-    res.status(200).send({"status":"success","users":result}).catch(error=>{
+    res.status(200).send({"status":"success","users":result})}).catch((error)=>{
       req.status(404).send({"status":"failed","errors":error});
     })
-  })
-}
+  }

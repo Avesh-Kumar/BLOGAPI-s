@@ -57,10 +57,10 @@ module.exports.getAllUsers=()=>{
   return new Promise((resolve,reject)=>{
     User.find({},(error,result)=>{
       if(error){
-        reject(error)
+        reject(error);
       }else{
         resolve(result);
       }
     })
   })
-}
+};
