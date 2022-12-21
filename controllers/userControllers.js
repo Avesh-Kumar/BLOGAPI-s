@@ -20,3 +20,15 @@ exports.allUsers=async(req,res)=>{
       req.status(404).send({"status":"failed","errors":error});
     })
   }
+exports.toMakeBlogger=async(req,res)=>{
+  await userService.makeBlogger(req.body)
+    .then((result)=>{
+            if(result === null){
+              res.status(400).send({"status":"got null object / username not found"});
+            } else{
+              res.status(200).send({"status":"success","blogger":result});
+            }
+  }).catch(error=>{
+    res.status(400).send({"status":"failed","error":error});
+  })
+}

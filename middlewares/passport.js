@@ -11,7 +11,8 @@ module.exports=function(passport){
                 jwtFromRequest:ExtractJwt.fromAuthHeaderAsBearerToken()
             },
               function(jwt_payload,cb){
-                 User.findOne({email:jwt_payload.email},(err,user)=>{
+                 User.findOne({username:jwt_payload.username},(err,user)=>{
+                    console.log(user,'passporttttttttttttttt');
                     if(err) {
                         return cb(err,false);
                     }

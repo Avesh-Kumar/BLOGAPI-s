@@ -1,4 +1,4 @@
-const blogController=require('../controllers/blogControllers');
+
 const userController = require('../controllers/userControllers');
 const  express=require('express')
 const  router= express.Router();
@@ -7,20 +7,14 @@ require('../middlewares/passport')(passport);
 const passportAuth= passport.authenticate('jwt',{"session":false})
 
 
-//============================= only for blogger controller================================================>
+//============================= only for users ================================================>
 router.post('/register',userController.signup);
 router.post('/login',userController.userLogin);
 router.get('/getAllUsers',passportAuth,userController.allUsers);
 
 
-
-
-
-
-
-
-
-
+//================================  convert from  users to  bloggers =============================================>
+router.patch('/makeblogger',passportAuth,userController.toMakeBlogger);
 
 
 

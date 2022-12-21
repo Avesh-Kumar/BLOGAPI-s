@@ -64,3 +64,35 @@ module.exports.getAllUsers=()=>{
     })
   })
 };
+
+module.exports.makeBlogger=(data)=>{
+  return new Promise((resolve,reject)=>{
+    if(data.username && data.password && data.secret){
+    User.findOne({username:data.username},(error,user)=>{
+      if(error){
+        reject("username did'nt  find in DB ");
+      }else{
+        if(user !== null){
+          const isMatched=bcrypt.compareSync(data.password,user.password);
+          if((isMatched) && (data.secret===config.blogger_secret_key)){
+            User.updateOne({_id:user._id},{$set:{isblogger:true}},(error,result)=>{
+             if(error){
+              reject(error);
+             }else{
+              resolve({"status":"success","blogger":result});
+             }
+            })
+          }else{
+           reject("please provide valid credentials");
+          }
+        } else{
+          resolve(null);
+        }
+      }
+    })
+  }
+  else{
+    reject("all feilds are required");
+  }
+  })
+};

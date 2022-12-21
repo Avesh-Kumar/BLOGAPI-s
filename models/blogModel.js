@@ -1,12 +1,38 @@
 const { mongoose } = require('mongoose');
-// const db=require('./db');
 const Schema = mongoose.Schema;
-const blogSchema=  new Schema({
-    author:{
-        type:String,
-        require:true,
-        unique:true
+const blogSchema = new Schema({
+    title: {
+        type: String,
+        require: true,
+        unique: false
+    },
+    blogger: {
+        type: String
+    },
+    comments: {
+        comment: [{
+            title: {
+                type: String,
+                unique: false
+            },
+            user: {
+                type: String
+            },
+            date:{
+                type:Date,
+                default:Date.now
+            },
+        }],
+    
+    },
+    isPublish: {
+        type: Boolean,
+        default: false
+    },
+    date:{
+       type:Date,
+       default:Date.now
     }
 })
-const Blog = mongoose.model('Blog',blogSchema);
-module.exports={Blog};
+const Blog = mongoose.model('Blog', blogSchema);
+module.exports = { Blog };
