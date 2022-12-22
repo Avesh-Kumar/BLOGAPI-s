@@ -12,7 +12,7 @@ module.exports=function(passport){
             },
               function(jwt_payload,cb){
                  User.findOne({username:jwt_payload.username},(err,user)=>{
-                    console.log(user,'passporttttttttttttttt');
+                    // console.log(user,'passporttttttttttttttt');
                     if(err) {
                         return cb(err,false);
                     }

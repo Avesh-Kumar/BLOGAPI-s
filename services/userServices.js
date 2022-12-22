@@ -1,4 +1,5 @@
 const {User} = require('../models/userModel');
+const{Blog}=require('../models/blogModel');
 const bcrypt=require('bcryptjs');
 const jwt= require('jsonwebtoken');
 const config  = require('../config/credential');
@@ -60,6 +61,23 @@ module.exports.getAllUsers=()=>{
         reject(error);
       }else{
         resolve(result);
+      }
+    })
+  })
+};
+module.exports.getAllPublishBlogs=(user)=>{
+  return new Promise((resolve,reject)=>{
+    User.find({_id:user._id},(error,user)=>{
+      if(user){
+        Blog.find({isPublish:true},(error,result)=>{
+          if(error){
+            reject(error);
+          }else{
+            resolve(result);
+          }
+        })
+      }else{
+        reject("you are not user of blog")
       }
     })
   })

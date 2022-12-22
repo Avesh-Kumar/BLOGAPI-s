@@ -19,7 +19,13 @@ exports.allUsers=async(req,res)=>{
     res.status(200).send({"status":"success","users":result})}).catch((error)=>{
       req.status(404).send({"status":"failed","errors":error});
     })
-  }
+  };
+  exports.publishBlogs=async(req,res)=>{
+    await userService.getAllPublishBlogs(req.user).then(result=>{
+      res.status(200).send({"status":"success","users":result})}).catch((error)=>{
+        req.status(404).send({"status":"failed","errors":error});
+      })
+    };
 exports.toMakeBlogger=async(req,res)=>{
   await userService.makeBlogger(req.body)
     .then((result)=>{

@@ -15,6 +15,7 @@ router.get('/getAllUsers',passportAuth,userController.allUsers);
 
 //================================  convert from  users to  bloggers =============================================>
 router.patch('/makeblogger',passportAuth,userController.toMakeBlogger);
+router.get('/getpublishblog',passportAuth,userController.publishBlogs);
 
 
 
